@@ -1,5 +1,10 @@
 FROM python:3.11-slim
 WORKDIR /app
+# rasterio/GDAL ont besoin de libexpat1 (absente de python:3.11-slim)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libexpat1 \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 ENV GDAL_DISABLE_READDIR_ON_OPEN=EMPTY_DIR \
     CPL_VSIL_CURL_ALLOWED_EXTENSIONS=.tif,.TIF,.tiff \
     GDAL_HTTP_MULTIPLEX=YES \

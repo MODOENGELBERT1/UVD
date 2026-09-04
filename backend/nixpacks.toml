@@ -1,0 +1,3 @@
+# Si Railway build avec Nixpacks (au lieu du Dockerfile), installe la lib système manquante
+[phases.setup]
+aptPkgs = ["libexpat1", "ca-certificates"]
